@@ -1,0 +1,376 @@
+<mvc:View controllerName="ClearApproval.controller.App" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" displayBlock="true" busy="{/appProperties/busy}"
+	xmlns:ux="sap.uxap" busyIndicatorDelay="0">
+	<App id="idAppControl">
+		<pages>
+			<Page title="{data>/task/title}" showHeader="false" showFooter="false">
+				<content>
+					<ObjectHeader title="{data>/task/title}" backgroundDesign="Solid" responsive="true">
+						<attributes>
+							<ObjectAttribute title="{i18n>GENERIC_CREATEDON}" text="{path: 'data>/task/createdOn', formatter: '.formatDate'}"/>
+						</attributes>
+						<statuses>
+							<ObjectStatus title="{i18n>GENERIC_STATUS}" text="{data>/task/statusText}"/>
+							<!--<ObjectStatus title="{i18n>GENERIC_PRIORITY}" text="{data>/task/priorityText}"/>-->
+						</statuses>
+					</ObjectHeader>
+					<!-- Everything starting from here is just an example -->
+					<IconTabBar expanded="{device>/isNo3840px}" class="sapUiSmallMarginBottom sapUiResponsiveContentPadding">
+						<items>
+							<IconTabFilter text="{i18n>title1}">
+								<content>
+									<f:Form busy="{settings>/headerBusy}">
+										<f:layout>
+											<f:ResponsiveGridLayout labelSpanL="3" labelSpanM="3" emptySpanL="0" emptySpanM="0" columnsL="3" columnsM="2"/>
+										</f:layout>
+										<f:formContainers>
+											<f:FormContainer>
+												<f:formElements>
+													<f:FormElement>
+														<f:fields>
+															<l:HorizontalLayout>
+																<Text text="{i18n>Flow}:" width="6em" textAlign="Begin"/>
+																<Text id="Flow" text="{data>/context/Header/FLOW}"/>
+															</l:HorizontalLayout>
+															<l:HorizontalLayout>
+																<Text text="{i18n>ApplicationDate}:" width="6em" textAlign="Begin"/>
+																<Text id="ApplicationDate" text="{path:'data>/context/Header/APPLICATIONDATE',formatter:'.formatter.date'}"/>
+															</l:HorizontalLayout>
+															<l:HorizontalLayout>
+																<Text text="{i18n>Applicant}:" width="6em" textAlign="Begin"/>
+																<Text id="Applicant" text="{data>/context/Header/APPLICANT}"/>
+																<Text text="{data>/context/Header/APPLICANTNAME}"/>
+															</l:HorizontalLayout>
+														</f:fields>
+													</f:FormElement>
+													<f:FormElement>
+														<f:fields>
+															<l:HorizontalLayout>
+																<Text text="{i18n>CompanyCode}:" width="6em" textAlign="Begin"/>
+																<Text id="CompanyCode" text="{data>/context/Header/STARTCOMPANY}" width="4em"/>
+																<Text text="{data>/context/Header/COMPANYNAME}"/>
+															</l:HorizontalLayout>
+															<l:HorizontalLayout></l:HorizontalLayout>
+															<l:HorizontalLayout>
+																<Text text="{i18n>NetDueDate}:" width="6em" textAlign="Begin"/>
+																<Text id="NetDueDate" text="{path:'data>/context/Header/NETDUEDATE',formatter:'.formatter.date'}"/>
+															</l:HorizontalLayout>
+														</f:fields>
+													</f:FormElement>
+													<f:FormElement>
+														<f:fields>
+															<l:HorizontalLayout>
+																<Text text="{i18n>Currency}:" width="6em" textAlign="Begin"/>
+																<Text id="TRANSCURRENCY" width="16em" text="{data>/context/Header/TRANSCURRENCY}"/>
+															</l:HorizontalLayout>
+															<l:HorizontalLayout></l:HorizontalLayout>
+															<l:HorizontalLayout>
+																<Text text="{i18n>ClearCurrency}:" width="6em" textAlign="Begin"/>
+																<Text id="CLEARCURRENCY" width="16em" text="{data>/context/Header/CLEARCURRENCY}"/>
+															</l:HorizontalLayout>
+														</f:fields>
+													</f:FormElement>
+													<f:FormElement>
+														<f:fields>
+															<l:HorizontalLayout>
+																<Text text="{i18n>Customer}:" width="6em" textAlign="Begin"/>
+																<MultiInput id="CustomerInput" editable="false" width="50rem"/>
+															</l:HorizontalLayout>
+														</f:fields>
+													</f:FormElement>
+													<f:FormElement>
+														<f:fields>
+															<l:HorizontalLayout>
+																<Text text="{i18n>SumTransCurrS}:" width="12em" textAlign="Begin"/>
+																<Text id="SUMTRANSCURRS" text="{path:'data>/context/Header/SUMTRANSCURRS',type: 'sap.ui.model.type.Float'}"/>
+															</l:HorizontalLayout>
+															<l:HorizontalLayout>
+																<Text text="{i18n>SumCompCurrS}:" width="12em" textAlign="Begin"/>
+																<Text id="SUMCOMPCURRS" text="{path:'data>/context/Header/SUMCOMPCURRS',type: 'sap.ui.model.type.Float'}"/>
+															</l:HorizontalLayout>
+														</f:fields>
+													</f:FormElement>
+													<f:FormElement>
+														<f:fields>
+															<l:HorizontalLayout>
+																<Text text="{i18n>SumTransCurrH}:" width="12em" textAlign="Begin"/>
+																<Text id="SUMTRANSCURRH" text="{path:'data>/context/Header/SUMTRANSCURRH',type: 'sap.ui.model.type.Float'}"/>
+															</l:HorizontalLayout>
+															<l:HorizontalLayout>
+																<Text text="{i18n>SumCompCurrH}:" width="12em" textAlign="Begin"/>
+																<Text id="SUMCOMPCURRH" text="{path:'data>/context/Header/SUMCOMPCURRH',type: 'sap.ui.model.type.Float'}"/>
+															</l:HorizontalLayout>
+														</f:fields>
+													</f:FormElement>
+													<f:FormElement>
+														<f:fields>
+															<l:HorizontalLayout>
+																<Text text="{i18n>ExcangeGL}:" width="12em" textAlign="Begin"/>
+																<Text id="EXCHANGEGL" text="{path:'data>/context/Header/EXCHANGEGL',type: 'sap.ui.model.type.Float'}"/>
+															</l:HorizontalLayout>
+														</f:fields>
+													</f:FormElement>
+												</f:formElements>
+											</f:FormContainer>
+										</f:formContainers>
+									</f:Form>
+									<f:Form>
+										<f:layout>
+											<f:ResponsiveGridLayout labelSpanL="3" labelSpanM="3" emptySpanL="0" emptySpanM="0" columnsL="3" columnsM="2"/>
+										</f:layout>
+										<f:formContainers>
+											<f:FormContainer>
+												<f:formElements>
+													<f:FormElement>
+														<f:fields>
+															<l:HorizontalLayout>
+																<Text text="{i18n>Accountant}:" width="5em" textAlign="Begin"/>
+																<Text text="{data>/context/Header/Accountant}"/>
+															</l:HorizontalLayout>
+															<l:HorizontalLayout>
+																<Text text="{i18n>PostingDate}:" width="5em" textAlign="Begin"/>
+																<DatePicker dateValue="{data>/context/Header/PostingDate}" width="10rem" valueFormat="yyyyMMdd" displayFormat="yyyy-MM-dd" editable="true"
+																	class="sapUiSmallMarginBottom"/>
+															</l:HorizontalLayout>
+															<l:HorizontalLayout>
+																<Text text="{i18n>DocumentDate}:" width="5em" textAlign="Begin"/>
+																<DatePicker dateValue="{data>/context/Header/DocumentDate}" width="10rem" valueFormat="yyyyMMdd" displayFormat="yyyy-MM-dd" editable="true"
+																	class="sapUiSmallMarginBottom"/>
+															</l:HorizontalLayout>
+														</f:fields>
+													</f:FormElement>
+													<f:FormElement>
+														<f:fields>
+															<l:HorizontalLayout>
+																<Text text="{i18n>Result}:" width="5em" textAlign="Begin"/>
+																<Input value="{data>/context/Header/RESULT}" width="40rem"/>
+															</l:HorizontalLayout>
+														</f:fields>
+													</f:FormElement>
+												</f:formElements>
+											</f:FormContainer>
+										</f:formContainers>
+									</f:Form>
+								</content>
+							</IconTabFilter>
+							<IconTabFilter text="{i18n>title2}">
+								<ScrollContainer height="100%" width="100%" vertical="false">
+									<Table id="idReceiptTable" inset="false" items="{ path: 'data>/context/ClearItem'}" class="sapFDynamicPageAlignContent" width="auto"
+										sticky="ColumnHeaders">
+										<columns>
+											<Column hAlign="Center" width="3rem">
+												<Label text="No."/>
+											</Column>
+											<Column hAlign="Center" width="6rem">
+												<Label text="{i18n>Customer}"/>
+											</Column>
+											<Column hAlign="Center" minScreenWidth="Desktop" demandPopin="true" popinDisplay="Inline" width="10rem">
+												<Label text="{i18n>SearchTerm1}"/>
+											</Column>
+											<Column hAlign="Center" width="6rem">
+												<Label text="{i18n>AccountingDocument}"/>
+											</Column>
+											<Column hAlign="Center" width="6rem">
+												<Label text="{i18n>GLAccount}"/>
+											</Column>
+											<Column hAlign="Center" minScreenWidth="Desktop" demandPopin="true" popinDisplay="Inline" width="10rem">
+												<Label text="{i18n>GLAccountName}"/>
+											</Column>
+											<Column hAlign="Center" minScreenWidth="Desktop" demandPopin="true" popinDisplay="Inline" visible="fales">
+												<Label text="{i18n>SG}"/>
+											</Column>
+											<Column hAlign="Center" minScreenWidth="Desktop" demandPopin="true" popinDisplay="Inline" width="6rem">
+												<Label text="{i18n>AssignMentre}"/>
+											</Column>
+											<Column hAlign="Center" minScreenWidth="Desktop" demandPopin="true" popinDisplay="Inline" width="10rem">
+												<Label text="{i18n>DocumentItemText}"/>
+											</Column>
+											<Column hAlign="Center" minScreenWidth="Desktop" demandPopin="true" popinDisplay="Inline" width="6rem">
+												<Label text="{i18n>PostingDate}"/>
+											</Column>
+											<Column hAlign="Center" minScreenWidth="Desktop" demandPopin="true" popinDisplay="Inline" width="6rem">
+												<Label text="{i18n>NetDueDate}"/>
+											</Column>
+											<Column hAlign="Center" width="6rem">
+												<Label text="{i18n>TransCurr}"/>
+											</Column>
+											<Column hAlign="Center" width="3rem">
+												<Label text="{i18n>Currency}"/>
+											</Column>
+											<Column hAlign="Center" minScreenWidth="Desktop" demandPopin="true" popinDisplay="Inline" width="6rem">
+												<Label text="{i18n>Rate}"/>
+											</Column>
+											<Column hAlign="Center" minScreenWidth="Desktop" demandPopin="true" popinDisplay="Inline" width="6rem">
+												<Label text="{i18n>CompanyCodeCurr}"/>
+											</Column>
+											<Column hAlign="Center" width="3rem">
+												<Label text="{i18n>Currency}"/>
+											</Column>
+											<Column hAlign="Center" width="6rem">
+												<Label text="{i18n>ClearCurr}"/>
+											</Column>
+											<Column hAlign="Center" width="6rem">
+												<Label text="{i18n>CompanyCodeCurr}"/>
+											</Column>
+										</columns>
+										<items>
+											<ColumnListItem>
+												<cells>
+													<Text text="{data>FLOWITEM}"/>
+													<Text text="{data>CUSTOMER}"/>
+													<Text text="{data>SEARCHTERM1}"/>
+													<Text text="{data>ACCOUNTINGDOCUMEN}"/>
+													<Text text="{data>GLACCOUNT}"/>
+													<Text text="{data>GLACCOUNTNAME}"/>
+													<Text text="{data>SG}"/>
+													<Text text="{data>ASSIGNMENTRE}"/>
+													<Text text="{data>DOCUMENTITEMTEXT}"/>
+													<Text text="{path:'data>POSTINGDATE',formatter:'.formatter.date'}"/>
+													<Text text="{path:'data>NETDUEDATE',formatter:'.formatter.date'}"/>
+													<Text text="{path:'data>TRANSCURR',type: 'sap.ui.model.type.Float'}"/>
+													<Text text="{path:'data>TRANSCURRENCY'}"/>
+													<Text text="{data>RATE}"/>
+													<Text text="{path:'data>COMPANYCODECURR',type: 'sap.ui.model.type.Float'}"/>
+													<Text text="{data>CLEARCURRENCY}"/>
+													<Text text="{path:'data>CLEARCURR',type: 'sap.ui.model.type.Float'}"/>
+													<Text text="{path:'data>COMPCLEARCURR',type: 'sap.ui.model.type.Float'}"/>
+												</cells>
+											</ColumnListItem>
+										</items>
+									</Table>
+								</ScrollContainer>
+							</IconTabFilter>
+							<IconTabFilter text="{i18n>title3}">
+								<ScrollContainer height="100%" width="100%" vertical="false">
+									<Table id="CustomerSumTable" inset="false" items="{path: 'data>/context/CustomerData'}" class="sapFDynamicPageAlignContent" width="auto"
+										sticky="ColumnHeaders">
+										<columns>
+											<Column hAlign="Center" width="3rem">
+												<Label text="No."/>
+											</Column>
+											<Column hAlign="Center" width="6rem">
+												<Label text="{i18n>Customer}"/>
+											</Column>
+											<Column hAlign="Center" minScreenWidth="Desktop" demandPopin="true" popinDisplay="Inline" width="10rem">
+												<Label text="{i18n>SearchTerm1}"/>
+											</Column>
+											<Column hAlign="Center" width="6rem">
+												<Label text="{i18n>ReTransCurr}"/>
+											</Column>
+											<Column hAlign="Center" width="3rem">
+												<Label text="{i18n>Currency}"/>
+											</Column>
+											<Column hAlign="Center" minScreenWidth="Desktop" demandPopin="true" popinDisplay="Inline" width="6rem">
+												<Label text="{i18n>ReCompCurr}"/>
+											</Column>
+											<Column hAlign="Center" width="6rem">
+												<Label text="{i18n>AdvanceTransCurr}"/>
+											</Column>
+											<Column hAlign="Center" width="3rem">
+												<Label text="{i18n>Currency}"/>
+											</Column>
+											<Column hAlign="Center" width="6rem">
+												<Label text="{i18n>AdvanceCompCurr}"/>
+											</Column>
+											<Column hAlign="Center" minScreenWidth="Desktop" demandPopin="true" popinDisplay="Inline" width="6rem">
+												<Label text="{i18n>BalanceTrans}"/>
+											</Column>
+											<Column hAlign="Center" width="3rem">
+												<Label text="{i18n>Currency}"/>
+											</Column>
+											<Column hAlign="Center" minScreenWidth="Desktop" demandPopin="true" popinDisplay="Inline" width="6rem">
+												<Label text="{i18n>BalanceComp}"/>
+											</Column>
+										</columns>
+										<items>
+											<ColumnListItem>
+												<cells>
+													<Text text="{data>CUSITEMNO}"/>
+													<Text text="{data>CUSTOMER}"/>
+													<Text text="{data>SEARCHTERM1}"/>
+													<Text text="{path:'data>RETRANSCURR',type: 'sap.ui.model.type.Float'}"/>
+													<Text text="{data>RECURRENCY}"/>
+													<Text text="{path:'data>RECOMPCURR',type: 'sap.ui.model.type.Float'}"/>
+													<Text text="{path:'data>ADVANCETRANSCURR',type: 'sap.ui.model.type.Float'}"/>
+													<Text text="{data>ADVANCECURRENCY}"/>
+													<Text text="{path:'data>ADVANCECOMPCURR',type: 'sap.ui.model.type.Float'}"/>
+													<Text text="{path:'data>BALANCETRANS',type: 'sap.ui.model.type.Float'}"/>
+													<Text text="{data>TRANSCURRENCY}"/>
+													<Text text="{path:'data>BALANCECOMP',type: 'sap.ui.model.type.Float'}"/>
+												</cells>
+											</ColumnListItem>
+										</items>
+									</Table>
+								</ScrollContainer>
+							</IconTabFilter>
+							<IconTabFilter text="{i18n>title4}">
+								<ScrollContainer height="100%" width="100%" vertical="false">
+									<Table id="GLTable" inset="false" items="{path: 'data>/context/GLAccountData'}" class="sapFDynamicPageAlignContent" width="auto"
+										sticky="ColumnHeaders" mode="None">
+										<columns>
+											<Column hAlign="Center" width="3rem">
+												<Label text="No."/>
+											</Column>
+											<Column hAlign="Center">
+												<Label text="{i18n>GLAccount}"/>
+											</Column>
+											<Column hAlign="Center">
+												<Label text="{i18n>GLAccountName}"/>
+											</Column>
+											<Column hAlign="Center">
+												<Label text="{i18n>DebitCredit}"/>
+											</Column>
+											<Column hAlign="Center">
+												<Label text="{i18n>TransCurr}"/>
+											</Column>
+											<Column hAlign="Center" minScreenWidth="Desktop" demandPopin="true" popinDisplay="Inline">
+												<Label text="{i18n>Rate}"/>
+											</Column>
+											<Column hAlign="Center">
+												<Label text="{i18n>Currency}"/>
+											</Column>
+											<Column hAlign="Center">
+												<Label text="{i18n>CompanyCodeCurr}"/>
+											</Column>
+											<Column hAlign="Center" minScreenWidth="Desktop" demandPopin="true" popinDisplay="Inline">
+												<Label text="{i18n>Note}"/>
+											</Column>
+										</columns>
+										<items>
+											<ColumnListItem>
+												<cells>
+													<Text text="{data>GLITEMNUM}"/>
+													<Text text="{data>GLACCOUNT}"/>
+													<Text text="{data>GLACCOUNTNAME}"/>
+													<Text text="{data>DEBITCREDIT}"/>
+													<Text text="{path:'data>TRANSCURR',type: 'sap.ui.model.type.Float'}"/>
+													<Text text="{data>RATE}"/>
+													<Text text="{data>CLEARCURRENCY}"/>
+													<Text text="{path:'data>LOCALCURR',type: 'sap.ui.model.type.Float'}"/>
+													<Text text="{data>NOTE}"/>
+												</cells>
+											</ColumnListItem>
+										</items>
+									</Table>
+								</ScrollContainer>
+							</IconTabFilter>
+							<IconTabFilter text="{i18n>title5}">
+								<UploadCollection id="UploadCollectionAttach" multiple="true" change="onChange" fileDeleted="onFileDeleted" fileType="{fileTypes>/selected}"
+									selectionChange="onSelectionChange" typeMissmatch="onTypeMissmatch" uploadComplete="onUploadComplete"
+									beforeUploadStarts="onBeforeUploadStarts" uploadTerminated="onUploadTerminated" items="{Attach>DocumentInfoRecordToAttachmentNavigation}"
+									showSeparators="{settings>/showSeparators}" uploadEnabled="false" mode="{settings>/mode}" instantUpload="false" uploadButtonInvisible="true">
+									<items>
+										<UploadCollectionItem documentId="{Attach>ArchiveDocumentID}" fileName="{Attach>FileName}" mimeType="{Attach>MimeType}"
+											url="{path:'Attach>__metadata/media_src',formatter:'.getMediaUrl'}" enableEdit="false" enableDelete="false"
+											visibleDelete="{settings>/visibleDelete}" visibleEdit="{settings>/visibleEdit}" deletePress="ondeletePress"/>
+									</items>
+								</UploadCollection>
+							</IconTabFilter>
+						</items>
+					</IconTabBar>
+					<!-- End of example coding -->
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>
